@@ -45,7 +45,7 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+
                                         <th>Tên danh muc</th>
                                         <th width="160px">Chức năng</th>
                                     </tr>
@@ -58,7 +58,7 @@
 	                                		for(Category objCat : listCat){
                                 %>
                                     <tr>
-                                        <td><%=objCat.getId() %></td>
+
                                         <td class="center"><%=objCat.getName() %></td>
                                         <td class="center">
                                             <a href="<%=request.getContextPath() %>/admin/cat/edit?id=<%=objCat.getId() %>" title="Sửa" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>
@@ -67,7 +67,7 @@
                                     </tr>
 									<% }
 									} else {
-										out.print("Khong co du lieu!");
+										out.print("Không có dữ liệu!");
 									}%>
 									
                                 </tbody>

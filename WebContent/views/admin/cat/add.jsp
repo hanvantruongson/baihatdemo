@@ -33,6 +33,7 @@
                                         <input type="text" id="name" value="<%if(name!=null) out.print(name); %>" name="name" class="form-control" />
                                     </div>
                                     <button type="submit" name="submit" class="btn btn-success btn-md">Thêm</button>
+                                    <input type="button" value="Hủy" class="btn btn-danger btn-md" onclick="history.back()"/>
                                 </form>
                             </div>
                         </div>

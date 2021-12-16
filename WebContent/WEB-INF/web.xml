@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <display-name>bsongs</display-name>
+  <display-name>chiasehopam</display-name>
   <welcome-file-list>
     <welcome-file>index</welcome-file>
   </welcome-file-list>
@@ -234,5 +234,53 @@
   <servlet-mapping>
     <servlet-name>PublicCommentController</servlet-name>
     <url-pattern>/comment</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminIndexChordsController</servlet-name>
+    <servlet-class>controllers.admins.chords.AdminIndexChordsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminIndexChordsController</servlet-name>
+    <url-pattern>/admin/chords</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminAddChordsController</servlet-name>
+    <servlet-class>controllers.admins.chords.AdminAddChordsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddChordsController</servlet-name>
+    <url-pattern>/admin/chords/add</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminDelChordsController</servlet-name>
+    <servlet-class>controllers.admins.chords.AdminDelChordsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDelChordsController</servlet-name>
+    <url-pattern>/admin/chords/del</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminEditChordsController</servlet-name>
+    <servlet-class>controllers.admins.chords.AdminEditChordsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminEditChordsController</servlet-name>
+    <url-pattern>/admin/chords/edit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>PublicIndexChordsController</servlet-name>
+    <servlet-class>controllers.publics.PublicIndexChordsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PublicIndexChordsController</servlet-name>
+    <url-pattern>/chords</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RegisterController</servlet-name>
+    <servlet-class>controllers.auth.RegisterController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterController</servlet-name>
+    <url-pattern>/register</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -7,10 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Contact {
+public class Chords {
 	private int id;
 	private String name;
-	private String email;
-	private String website;
-	private String message;
+	private String picture;
+	
+	public Chords(int id) {
+		super();
+		this.id = id;
+	}
 }

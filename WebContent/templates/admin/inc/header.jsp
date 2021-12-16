@@ -8,9 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AdminCP | VinaEnter Edu</title>
-    <!-- Icon -->
-    <link rel="icon" type="image/png" href="<%=GlobalConstant.DIR_UPLOAD %>/icon.jpg"/>
+    <title>Quản lý</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="<%=GlobalConstant.URL_ADMIN%>/assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -35,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%=request.getContextPath()%>/home">VinaEnter Edu</a>
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/home">Home</a>
             </div>
             <%
             	if(session.getAttribute("userLogin")!=null){

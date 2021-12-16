@@ -11,23 +11,11 @@
   		for(Song objSong : listSongs){
   			i++;
   			String urlSlug = request.getContextPath() + "/chi-tiet/" + StringUtil.makeSlug(objSong.getName()) + "-" + objSong.getId() + ".html";
-  			String date_string = new SimpleDateFormat("dd-MM-yyyy").format(objSong.getCreateAt());
   %>
     <div class="article">
-      <h2><a href="<%=urlSlug%>" title="<%=objSong.getName() %>"><%=objSong.getName() %></a></h2>
-      <p class="infopost">Ngày đăng: <%=date_string %>. Lượt xem: <%=objSong.getCount() %> <a href="#" class="com"><span><%=i %></span></a></p>
+      <p class="infopost"><a href="<%=urlSlug%>" title="<%=objSong.getName() %>"><%=objSong.getName() %> </a> <span><%=objSong.getDescription() %></span>  <br></p>
       <div class="clr"></div>
-      <div class="img"><a href="<%=urlSlug%>" title="<%=objSong.getName() %>">
-      <%if(!"".equals(objSong.getPicture())){%>
-      <img src="<%=GlobalConstant.URL_PICTURE%>/<%=objSong.getPicture() %>" alt="Không có hình ảnh" width="177" height="213" class="fl" />
-      <%}else{%>
-      <img src="<%=GlobalConstant.URL_PICTURE%>/nopicture.jpg" alt="Không có hình ảnh" width="177" height="213" class="fl" />
-      <%}%>
-      </a></div>
-      <div class="post_content">
-        <p><%=objSong.getDescription() %></p>
-        <p class="spec"><a href="<%=urlSlug%>" class="rm">Chi tiết &raquo;</a></p>
-      </div>
+      
       <div class="clr"></div>
     </div>
     <%

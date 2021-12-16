@@ -32,7 +32,7 @@ public class SongDao extends AbstractDAO {
 		return listItems;
 	}
 
-	public List<Song> getItems(int number) {
+	public List<Song> getItems(int number) { // lay danh sach song theo so luong
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT s.*, c.name AS cname FROM songs AS s JOIN categories AS c WHERE s.cat_id = c.id ORDER BY id DESC LIMIT ?";
 		List<Song> listItems = new ArrayList<>();
@@ -54,7 +54,7 @@ public class SongDao extends AbstractDAO {
 		return listItems;
 	}
 
-	public List<Song> getItemsByCategory(int idCat) {
+	public List<Song> getItemsByCategory(int idCat) { // lay theo danh muc
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT s.*, c.name AS cname FROM songs AS s JOIN categories AS c WHERE s.cat_id = ? AND s.cat_id = c.id ORDER BY id DESC";
 		List<Song> listItems = new ArrayList<>();
@@ -76,7 +76,7 @@ public class SongDao extends AbstractDAO {
 		return listItems;
 	}
 
-	public Song getItem(int idSong) {
+	public Song getItem(int idSong) { //lay chi tiet song
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT s.*, c.name AS cname FROM songs s JOIN categories c ON s.cat_id = c.id WHERE s.id = ?";
 		Song item = null;
@@ -97,7 +97,7 @@ public class SongDao extends AbstractDAO {
 		return item;
 	}
 
-	public int addItem(Song itemSong) {
+	public int addItem(Song itemSong) { // them song
 		int result = 0;
 		con = DBConnectionUtil.getConnection();
 		String sql = "INSERT INTO songs (name, preview_text, detail_text, picture, cat_id) VALUES (?, ?, ?, ?, ?)";
@@ -117,7 +117,7 @@ public class SongDao extends AbstractDAO {
 		return result;
 	}
 
-	public int editItem(Song itemSong) {
+	public int editItem(Song itemSong) { // sua song
 		int result = 0;
 		con = DBConnectionUtil.getConnection();
 		String sql = "UPDATE songs SET name = ?, preview_text = ?, detail_text = ?, picture = ?, cat_id = ? WHERE id = ?";
@@ -138,7 +138,7 @@ public class SongDao extends AbstractDAO {
 		return result;
 	}
 
-	public List<Song> getRelatedItems(Song itemSong, int number) {
+	public List<Song> getRelatedItems(Song itemSong, int number) { // lay song lien quan theo danh muc
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT s.*, c.name AS cname FROM songs AS s JOIN categories AS c WHERE s.cat_id = ? AND s.cat_id = c.id AND s.id != ? ORDER BY id DESC LIMIT ?";
 		List<Song> listItems = new ArrayList<>();
@@ -162,7 +162,7 @@ public class SongDao extends AbstractDAO {
 		return listItems;
 	}
 
-	public void increaseView(int idSong) {
+	public void increaseView(int idSong) { // tang luot xem
 		con = DBConnectionUtil.getConnection();
 		String sql = "UPDATE songs SET  counter = counter + 1, data_create = data_create WHERE id = ?";
 		try {
@@ -176,7 +176,7 @@ public class SongDao extends AbstractDAO {
 		}
 	}
 
-	public int numberOfItems() {
+	public int numberOfItems() { // lay so luong song, dem tong 
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT COUNT(*) AS count FROM songs";
 		try {
@@ -194,7 +194,7 @@ public class SongDao extends AbstractDAO {
 		return 0;
 	}
 
-	public int numberOfItems(int idCat) {
+	public int numberOfItems(int idCat) { // lay so luong song theo cat
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT COUNT(*) AS count FROM songs WHERE cat_id = ?";
 		try {
@@ -213,7 +213,7 @@ public class SongDao extends AbstractDAO {
 		return 0;
 	}
 
-	public List<Song> getItemPagination(int offset) {
+	public List<Song> getItemPagination(int offset) { // phan trang
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT s.*, c.name AS cname FROM songs s JOIN categories c ON s.cat_id = c.id ORDER BY id DESC LIMIT ?, ?";
 		List<Song> listItems = new ArrayList<>();
@@ -236,7 +236,7 @@ public class SongDao extends AbstractDAO {
 		return listItems;
 	}
 
-	public int delItem(int songId) {
+	public int delItem(int songId) { // xoa
 		int result = 0;
 		con = DBConnectionUtil.getConnection();
 		String sqlSong = "DELETE FROM songs WHERE id = ?";
@@ -260,7 +260,7 @@ public class SongDao extends AbstractDAO {
 		return result;
 	}
 
-	public List<Song> getItemsByCategoryPagination(int offset, int idCat) {
+	public List<Song> getItemsByCategoryPagination(int offset, int idCat) { // phan trang trong trang cat
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT s.*, c.name AS cname FROM songs s JOIN categories c ON s.cat_id = c.id WHERE cat_id = ? ORDER BY id DESC LIMIT ?, ?";
 		List<Song> listItems = new ArrayList<>();
@@ -284,7 +284,7 @@ public class SongDao extends AbstractDAO {
 		return listItems;
 	}
 
-	public List<Song> getItems(String name) {
+	public List<Song> getItems(String name) { // tim kiem song theo name
 		con = DBConnectionUtil.getConnection();
 		String sql = "SELECT s.*, c.name AS cname FROM songs AS s JOIN categories AS c WHERE (s.name LIKE ? OR s.name LIKE ? OR s.name LIKE ?) AND s.cat_id = c.id ORDER BY id DESC";
 		List<Song> listItems = new ArrayList<>();

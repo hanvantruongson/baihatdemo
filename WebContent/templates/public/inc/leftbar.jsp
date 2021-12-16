@@ -36,20 +36,3 @@
     %>
   </ul>
 </div>
-
-<div class="gadget">
-  <h2 class="star"><span>Bài hát mới</span></h2>
-  <div class="clr"></div>
-  <ul class="ex_menu">
-  <%
-  SongDao songDao = new SongDao();
-  List<Song> recentSongs = songDao.getItems(6);
-  if(recentSongs.size()>0){
-	  for(Song objSong: recentSongs){
-		  String urlSlug = request.getContextPath() + "/chi-tiet/" + StringUtil.makeSlug(objSong.getName()) + "-" + objSong.getId() + ".html";
-  %>
-    <li><a href="<%=urlSlug%>"><%=objSong.getName()%></a><br />
-      <%if(objSong.getDescription().length()>50) out.print(objSong.getDescription().substring(0, 50)+"..."); else out.print(objSong.getDescription()); %></li>
-      <%}} %>
-  </ul>
-</div>

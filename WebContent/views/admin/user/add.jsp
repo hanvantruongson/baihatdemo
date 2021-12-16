@@ -27,6 +27,8 @@
 											break;
 											case 4: out.print("<p style='background: yellow; color: red'>Bạn nhập username đã tồn tại!</p>");
 											break;
+											case 6: out.print("<p style='background: yellow; color: red'>Password không đúng!</p>");
+											break;
 										}
 									}
 							%>
@@ -47,10 +49,15 @@
                                         <input type="password" id="password" value="" name="password" class="form-control" />
                                     </div>
                                     <div class="form-group">
+                                        <label for="name">Retype Password</label>
+                                        <input type="password" id="repassword" value="" name="repassword" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
                                         <label for="name">FullName</label>
                                         <input type="text" id="fullname" value="<%if(fullname!=null) out.print(fullname); %>" name="fullname" class="form-control" />
                                     </div>
                                     <button type="submit" name="submit" class="btn btn-success btn-md">Thêm</button>
+                                    <input type="button" value="Hủy" class="btn btn-danger btn-md" onclick="history.back()"/>
                                 </form>
                             </div>
                         </div>

@@ -36,7 +36,6 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Username</th>
                                         <th>Comment</th>
                                         <th>Status</th>
@@ -52,7 +51,6 @@
 	                                			String picture = objCmt.isStatus()?"active.gif":"deactive.gif";
                                 %>
                                     <tr>
-                                        <td><%=objCmt.getId() %></td>
                                         <td class="center"><%=objCmt.getUsername() %></td>
                                         <td class="center"><%=objCmt.getComment() %></td>
                                         <td class="center">

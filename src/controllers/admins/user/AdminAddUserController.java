@@ -63,6 +63,7 @@ public class AdminAddUserController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String repassword = request.getParameter("repassword");
 		String fullname = request.getParameter("fullname");
 		//VALIDATE DỮ LIỆU
 		if("".equals(username)) {
@@ -70,8 +71,13 @@ public class AdminAddUserController extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
-		if("".equals(password)) {
+		if("".equals(password)) { 
 			RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user/add.jsp?msg=2");
+			rd.forward(request, response);
+			return;
+		}
+		if(password.equals(repassword) == false) {
+			RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user/add.jsp?msg=6");
 			rd.forward(request, response);
 			return;
 		}

@@ -25,9 +25,9 @@ public class LoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Nếu đã đăng nhập rồi thì chuyển hướng sang trang admin luôn
+		// Nếu đã đăng nhập rồi thì chuyển hướng sang trang index luôn
 		if (AuthUtil.checkLogin(request, response)) {
-			response.sendRedirect(request.getContextPath() + "/admin");
+			response.sendRedirect(request.getContextPath() + "/index");
 			return; // thoát luôn, không xử lý tiếp theo
 		}
 		// Chuyển tiếp sang trang login
@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
 			HttpSession session = request.getSession();
 			User userLogin = userDao.getItem(username, password);
 			session.setAttribute("userLogin", userLogin);
-			response.sendRedirect(request.getContextPath() + "/admin");
+			response.sendRedirect(request.getContextPath() + "/index");
 		} else {
 			// Nếu không tồn tại username và password trong csdl thì chuyển tiếp đến trang
 			// login và thông báo lỗi

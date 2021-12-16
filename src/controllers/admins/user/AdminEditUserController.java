@@ -73,6 +73,7 @@ public class AdminEditUserController extends HttpServlet {
 		if ("admin".equals(userLogin.getUsername()) || (id == userLogin.getId())) {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			String repassword = request.getParameter("repassword");
 			String fullname = request.getParameter("fullname");
 			//VALIDATE DỮ LIỆU
 			if ("".equals(username)) {
@@ -82,6 +83,11 @@ public class AdminEditUserController extends HttpServlet {
 			}
 			if ("".equals(password)) {
 				RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user/edit.jsp?msg=2");
+				rd.forward(request, response);
+				return;
+			}
+			if(password.equals(repassword) == false) {
+				RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user/edit.jsp?msg=6");
 				rd.forward(request, response);
 				return;
 			}

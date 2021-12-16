@@ -1,3 +1,4 @@
+<%@page import="models.User"%>
 <%@page import="constants.GlobalConstant"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="models.Song"%>
@@ -6,9 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BSong</title>
+<title>Chia sẻ hợp âm</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/png" href="<%=GlobalConstant.URL_PICTURE %>/icon.jpg"/>
 <link href="<%=GlobalConstant.URL_PUBLIC %>/css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<%=GlobalConstant.URL_PUBLIC %>/css/coin-slider.css" />
 <script type="text/javascript" src="<%=GlobalConstant.URL_PUBLIC %>/js/jquery-3.2.1.js"></script>
@@ -18,28 +18,37 @@
 </head>
 <body>
 <div class="main">
-  <div class="header">
-    <div class="header_resize">
-      <div class="logo">
-        <h1><a href="<%=request.getContextPath()%>/home">BSong <small>Một dự án khóa JAVA tại VinaEnter Edu</small></a></h1>
+ 
+	<div class="header-menu">     <div class="logo">
+        <h1><a href="<%=request.getContextPath()%>/home">Chia sẻ hợp âm</a></h1>
       </div>
       <div class="menu_nav">
         <ul>
-          <li id="index"><a href="<%=request.getContextPath()%>/home"><span>Trang chủ</span></a>
-          <li id="contact"><a href="<%=request.getContextPath()%>/lien-he.html"><span>Liên hệ</span></a></li>
-          <li><a href="<%=request.getContextPath()%>/login"><span>Đăng nhập</span></a></li>
+        	<li><a href="<%=request.getContextPath()%>/chords"><span>Hợp âm</span></a></li>
+        	<%
+            	if(session.getAttribute("userLogin")!=null){
+            		User userLogin = (User) session.getAttribute("userLogin");
+            %>
+          	<li><a href="<%=request.getContextPath()%>/admin" style="<%if(!"admin".equals(userLogin.getUsername())) out.print("display: none"); %>"> 
+          	<span>Quản lý</span></a></li>
+            <div style="color: black; padding: 12px 12px; float: right;font-size: 14px; font-family: arial;"> Xin chào, <b><%=userLogin.getFullname() %></b> &nbsp; <a href="<%=request.getContextPath() %>/logout" class="btn btn-danger square-btn-adjust">Đăng xuất</a> </div>
+            <%}  else {  %>
+          	<li><a href="<%=request.getContextPath()%>/login"><span>Đăng nhập</span></a></li>
+          	<li><a href="<%=request.getContextPath()%>/register"><span>Đăng ký</span></a></li>
+           <%} %>
         </ul>
-      </div>
-      <div class="clr"></div>
+      </div></div>
+ 
+	<div class="content-wrapper">
       <div class="slider">
         <div id="coin-slider">
-	        <a href="#"><img src="<%=GlobalConstant.URL_PUBLIC %>/images/slide1.jpg" width="935" height="307" alt="" /></a> 
-	        <a href="#"><img src="<%=GlobalConstant.URL_PUBLIC %>/images/slide2.jpg" width="935" height="307" alt="" /></a> 
-	        <a href="#"><img src="<%=GlobalConstant.URL_PUBLIC %>/images/slide3.jpg" width="935" height="307" alt="" /></a>
+	        <a href="#"><img src="<%=GlobalConstant.URL_PUBLIC %>/images/banner1.jpg" width="935" height="307" alt="" /></a> 
+	        <a href="#"><img src="<%=GlobalConstant.URL_PUBLIC %>/images/banner2.jpg" width="935" height="307" alt="" /></a> 
+	        <a href="#"><img src="<%=GlobalConstant.URL_PUBLIC %>/images/banner3.jpg" width="935" height="307" alt="" /></a>
         </div>
-        <div class="clr"></div>
+      
       </div>
-      <div class="clr"></div>
-    </div>
-  </div>
-  <div class="content">
+   
+   <div class="content">
+
+ 

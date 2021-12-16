@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import daos.RatingDao;
 import models.Rating;
+import util.AuthUtil;
 
 public class PublicRatingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

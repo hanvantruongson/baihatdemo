@@ -18,10 +18,10 @@
                 <a id="song" href="<%=request.getContextPath()%>/admin/songs"><i class="fa fa-music fa-3x"></i> Quản lý bài hát</a>
             </li>
             <li>
-                <a id="user" href="<%=request.getContextPath()%>/admin/users"><i class="fa fa-user fa-3x"></i> Quản lý người dùng</a>
+            	<a id="chords" href="<%=request.getContextPath()%>/admin/chords"><i class="fa fa-th fa-3x"></i> Quản lý hợp âm</a>
             </li>
             <li>
-                <a id="contact" href="<%=request.getContextPath()%>/admin/contacts"><i class="fa fa-envelope fa-3x"></i> Quản lý liên hệ</a>
+                <a id="user" href="<%=request.getContextPath()%>/admin/users"><i class="fa fa-user fa-3x"></i> Quản lý người dùng</a>
             </li>
             <li>
                 <a id="comment" href="<%=request.getContextPath()%>/admin/comments"><i class="fa fa-envelope fa-3x"></i> Quản lý bình luận</a>

@@ -51,7 +51,6 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Tên đăng nhập</th>
                                         <th>Họ tên</th>
                                         <th width="160px">Chức năng</th>
@@ -67,7 +66,6 @@
 	                                			String urlDel = request.getContextPath() + "/admin/user/del?id=" + objItem.getId();
                                 %>
                                     <tr>
-                                        <td><%=objItem.getId() %></td>
                                         <td class="center"><%=objItem.getUsername() %></td>
                                         <td class="center"><%=objItem.getFullname() %></td>
                                         <%

@@ -23,7 +23,7 @@ public class StringUtil {
 		return result;
 	}
 
-	public static String makeSlug(String title) {
+	public static String makeSlug(String title) { // tao duong dan than thien
 		String slug = Normalizer.normalize(title, Normalizer.Form.NFD);
 		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
 		slug = pattern.matcher(slug).replaceAll("");

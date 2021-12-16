@@ -1,7 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="daos.CatDao"%>
 <%@page import="models.Song"%>
-<%@page import="models.Category"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/templates/admin/inc/header.jsp"%>
@@ -10,7 +8,7 @@
 	<div id="page-inner">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Thêm bài hát</h2>
+				<h2>Thêm hợp âm</h2>
 			</div>
 		</div>
 		<!-- /. ROW  -->
@@ -23,12 +21,6 @@
 						<div class="row">
 							<%
 								String name = request.getParameter("name");
-								int catId = 0;
-								if (request.getParameter("catId") != null) {
-									catId = Integer.parseInt(request.getParameter("catId"));
-								}
-								String preview = request.getParameter("preview");
-								String detail = request.getParameter("detail");
 								if (request.getParameter("msg") != null) {
 									int msg = Integer.parseInt(request.getParameter("msg"));
 									switch (msg) {
@@ -53,38 +45,12 @@
 							<div class="col-md-12">
 								<form role="form" method="post" enctype="multipart/form-data" id="form">
 									<div class="form-group">
-										<label for="name">Tên bài hát</label>
+										<label for="name">Tên hợp âm</label>
 										<input type="text" id="name" value="<%if (name != null) out.print(name);%>"	name="name" class="form-control" />
-									</div>
-									<div class="form-group">
-										<label for="category">Danh mục bài hát</label>
-										<select	id="category" name="catId" class="form-control">
-											<option value="0">---Chọn danh mục---</option>
-											<%
-												CatDao catDao = new CatDao();
-												List<Category> listCat = catDao.getItems();
-												if (listCat.size() > 0) {
-													for (Category objCat : listCat) {
-											%>
-											<option <%if(catId==objCat.getId()) out.print("selected");%> value="<%=objCat.getId()%>"><%=objCat.getName()%></option>
-											<%
-												}}
-											%>
-										</select>
 									</div>
 									<div class="form-group">
 										<label for="picture">Hình ảnh</label>
 										<input type="file" name="picture" />
-									</div>
-									<div class="form-group">
-										<label for="preview">Ca sĩ</label>
-										<textarea id="preview" class="form-control" rows="3" name="preview"><% 
-										if (preview != null) out.print(preview);%></textarea>
-									</div>
-									<div class="form-group">
-										<label for="detail">Chi tiết</label>
-										<textarea id="detail" class="form-control" id="detail"	rows="5" name="detail"><%
-										if (detail != null) out.print(detail);%></textarea>
 									</div>
 									<button type="submit" name="submit"	class="btn btn-success btn-md">Thêm</button>
 									<input type="button" value="Hủy" class="btn btn-danger btn-md" onclick="history.back()"/>
@@ -101,7 +67,7 @@
 	<!-- /. PAGE INNER  -->
 </div>
 <script>
-	document.getElementById("song").classList.add('active-menu');
+	document.getElementById("chords").classList.add('active-menu');
 </script>
 <!-- /. PAGE WRAPPER  -->
 <%@ include file="/templates/admin/inc/footer.jsp"%>

@@ -1,0 +1,49 @@
+package controllers.publics;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import constants.GlobalConstant;
+import daos.ChordsDao;
+import models.Chords;
+
+public class PublicIndexChordsController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private ChordsDao chordsDao;
+
+	public PublicIndexChordsController() {
+		super();
+		chordsDao = new ChordsDao();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int numberOfItems = chordsDao.numberOfItems();
+		int numberOfPages = (int) Math.ceil((float) numberOfItems / GlobalConstant.NUMBER_PER_PAGE);
+		int currentPage = 1;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+		}
+		if (currentPage > numberOfPages || currentPage < 1) {
+			currentPage = 1;
+		}
+		int offset = (currentPage - 1) * GlobalConstant.NUMBER_PER_PAGE;
+		List<Chords> listChords = chordsDao.getItemPagination(offset);
+		request.setAttribute("listChords", listChords);
+		request.setAttribute("numberOfPages", numberOfPages);
+		request.setAttribute("currentPage", currentPage);
+		RequestDispatcher rd = request.getRequestDispatcher("/views/public/chords.jsp");
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
+}

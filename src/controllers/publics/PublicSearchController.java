@@ -1,5 +1,6 @@
 package controllers.publics;
 
+import java.awt.Choice;
 import java.io.IOException;
 import java.util.List;
 
@@ -9,16 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daos.ChordsDao;
 import daos.SongDao;
+import models.Chords;
 import models.Song;
 
 public class PublicSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SongDao songDao;
+	private ChordsDao chordsDao;
 
 	public PublicSearchController() {
 		super();
 		songDao = new SongDao();
+		chordsDao = new ChordsDao();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,6 +31,7 @@ public class PublicSearchController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String name = request.getParameter("name");
 		List<Song> listSongs = songDao.getItems(name);
+		List<Chords> listChords = chordsDao.getItems(name);
 		request.setAttribute("songName", name);
 		request.setAttribute("numberOfPages", 1);
 		request.setAttribute("currentPage", 1);

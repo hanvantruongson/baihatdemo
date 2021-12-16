@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/templates/public/inc/header.jsp" %>
+   <div class="content">
 <div class="content_resize">
   <div class="mainbar">
     <div class="article">
@@ -15,16 +16,21 @@
 		  		String songDate = new SimpleDateFormat("dd-MM-yyyy").format(itemSong.getCreateAt());
   	%>
   		<p style="display: none" id="idSong"><%=itemSong.getId() %></p>
-      <h1><%=itemSong.getCat().getName() %></h1>
       <div class="clr"></div>
-      <h2><a href="javascript: void(0)" title="<%=itemSong.getName() %>"><%=itemSong.getName() %></a></h2>
+      <h1><%=itemSong.getName() %></h1>
       <p>Ngày đăng: <%=songDate %>. Lượt xem: <%=itemSong.getCount()%></p>
-      <div class="vnecontent">
-         <%=itemSong.getDetail() %>
+      <div class="white-space-pre-line"><%=itemSong.getDetail() %>
       </div>
+      <div>
+      <h2> Hợp âm</h2>
+		<img src="<%=GlobalConstant.URL_PICTURE%>/<%=itemSong.getPicture() %>" style = "border: none" alt="Không có hình ảnh" class="fl" />
+      </div>
+      
+    
     <b>Đánh giá bài hát</b>
-    <span id="rating"></span>
-    <p style="color: red; font-size: 20px;">Danh sách bình luận</p>
+    <span id="rating"> </span>
+    <p style="color:
+     black; font-size: 20px;">Danh sách bình luận</p>
     <div id="comment">
 		<%
 			@SuppressWarnings("unchecked")
@@ -40,33 +46,24 @@
 		<%}} %>
 	</div>
     <form>
-			<input type="text" name="fullname" id="fullname" value="" placeholder="Nhập tên" />
+    		 <%
+            	if(session.getAttribute("userLogin")!=null){
+            		User userLogin = (User) session.getAttribute("userLogin");
+            %>
+			<input type="text" name="fullname" id="fullname" value="<%=userLogin.getUsername()%>" placeholder="Nhập tên" />
 			<input type="text" name="cmt" id="cmt" value="" placeholder="Nhập bình luận" />
 			<a href="javascript:void(0)" title="" onclick="onClickComment()">Bình luận</a>
+			<% } else {%>
+			<input type="text" name="fullname" id="fullname" value="" placeholder="Nhập tên" />
+			<input type="text" name="cmt" id="cmt" value="" placeholder="Nhập bình luận" />
+			<a href="" title="" onclick="return confirm('Bạn phải đăng nhập')">Bình luận</a>
+			<%} %>
 	</form>
       <%} else { %>
       <p>Không có chi tiết bài hát</p>
       <%} %>
     </div>
-    <div class="article">
-      <h2>Bài viết liên quan</h2>
-      <div class="clr"></div>
-      <%
-      @SuppressWarnings("unchecked")
-      List<Song> relatedSong = (List<Song>) request.getAttribute("relatedSong");
-      if(relatedSong != null && relatedSong.size() >0){
-    	  for(Song item : relatedSong){
-    		  String urlSlug = request.getContextPath() + "/chi-tiet/" + StringUtil.makeSlug(item.getName()) + "-" + item.getId() + ".html";
-      %>
-      <div class="comment"> 
-	      <a href="<%=urlSlug %>">
-	      		<img src="<%=GlobalConstant.URL_PICTURE%>/<%=item.getPicture() %>" width="40" height="40" alt="" class="userpic" />
-	      </a>
-          <h2><a href="<%=urlSlug %>"><%=item.getName() %></a></h2>
-        <p><%=item.getDescription() %></p>
-      </div>
-      <%}} %>
-    </div>
+    
   </div>
   <div class="sidebar">
   <%@ include file="/templates/public/inc/leftbar.jsp" %>
@@ -97,7 +94,7 @@
 			cancelPlace: 'left',
 			half: true,
 			start: <%=rating%>,
-			path:"/bsongs/templates/public/imgs/",
+			path:"/chiasehopam/templates/public/imgs/",
 		});
 	});
 	
@@ -131,4 +128,8 @@
 		document.getElementById("<%=itemSong.getCat().getId()%>").classList.add('active_cat');
 	<%}%>
 </script>
-<%@ include file="/templates/public/inc/footer.jsp" %>
+</div>
+
+  </div>
+  <div style=" height: 100px;  width: 100%;"></div>
+  <%@ include file="/templates/public/inc/footer.jsp" %>

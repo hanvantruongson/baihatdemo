@@ -1,4 +1,4 @@
-package controllers.admins.contact;
+package controllers.admins.chords;
 
 import java.io.IOException;
 
@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import daos.ContactDao;
+import daos.ChordsDao;
 import util.AuthUtil;
 
-public class AdminDelContactController extends HttpServlet {
+public class AdminDelChordsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminDelContactController() {
+	public AdminDelChordsController() {
 		super();
 	}
 
@@ -23,19 +23,20 @@ public class AdminDelContactController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
-		int id = 0;
+		int chordsId = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("id"));
+			chordsId = Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
-			response.sendRedirect(request.getContextPath() + "/admin/contacts?msg=4");
+			response.sendRedirect(request.getContextPath() + "/admin/chords?msg=4");
 			return;
 		}
-		ContactDao contactDao = new ContactDao();
-		if (contactDao.delItem(id) > 0) {
-			response.sendRedirect(request.getContextPath() + "/admin/contacts?msg=3");
+		ChordsDao chordsDao = new ChordsDao();
+		int chordsIdDel = chordsDao.delItem(chordsId);
+		if (chordsIdDel > 0) {
+			response.sendRedirect(request.getContextPath() + "/admin/chords?msg=3&chords_id_del=" + chordsIdDel);
 			return;
 		} else {
-			response.sendRedirect(request.getContextPath() + "/admin/contacts?msg=0");
+			response.sendRedirect(request.getContextPath() + "/admin/chords?msg=0");
 			return;
 		}
 	}
@@ -43,5 +44,4 @@ public class AdminDelContactController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	}
-
 }
